@@ -11,6 +11,7 @@ class Command {
         DefaultIO m_dio;
     public:
         virtual void execute();
+        virtual void setDescription();
 };
 
 

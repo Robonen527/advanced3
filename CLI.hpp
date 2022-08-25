@@ -1,7 +1,8 @@
 #ifndef CLI
 #define CLI
 
-#include "DefaultIO.hpp"
+#include "Command.hpp"
+#include <vector>
 
 class CLI {
     private:

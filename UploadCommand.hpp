@@ -5,7 +5,7 @@
 
 class UploadCommand : public Command {
     public:
-        UploadCommand(string description, DefaultIO dio);
+        UploadCommand(DefaultIO dio);
 };
 
 
