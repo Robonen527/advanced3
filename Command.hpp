@@ -12,6 +12,7 @@ class Command {
     public:
         virtual void execute();
         virtual void setDescription();
+        virtual string getDescription();
 };
 
 

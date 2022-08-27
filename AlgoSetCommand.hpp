@@ -1,18 +1,18 @@
-#ifndef UPLOADCOMMAND
-#define UPLOADCOMMAND
+#ifndef ALGOSETCOMMAND
+#define ALGOSETCOMMAND
 
 #include "Command.hpp"
 
-class UploadCommand : public Command {
+class AlgoSetCommand : public Command {
     private:
         string m_description;
         DefaultIO m_dio;
     public:
-        UploadCommand(DefaultIO dio);
+        AlgoSetCommand(DefaultIO dio);
         string getDescription();
         void execute();
         void setDescription();
 };
 
 
-#endif // UPLOADCOMMAND
+#endif // ALGOSETCOMMAND
