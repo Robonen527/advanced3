@@ -11,5 +11,7 @@ string UploadCommand::getDescription() {
 }
 void UploadCommand::execute() {
     m_dio.write("Please upload your local train csv file.\n");
-    
+    string pathTrain = m_dio.read();
+    m_dio.write("Please upload your local test csv file.\n");
+    string pathTest = m_dio.read();
 }

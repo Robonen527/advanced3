@@ -5,5 +5,7 @@ void StandardIO::write(string str) {
 }
 
 string StandardIO::read() {
-    
+    string readValue;
+    cin >> readValue;
+    return readValue;
 }
