@@ -18,7 +18,7 @@ Iris::Iris(double cupLength, double cupWidth,
 
 Iris::Iris()
 {
-	m_type = "none";
+	m_type = "unIdentified";
 	m_cupLength = 0.0;
 	m_cupWidth = 0.0;
 	m_petalLength = 0.0;
@@ -156,14 +156,17 @@ string Iris::classify(Iris* irises, int k, int length, double (Iris::* distanceF
 	*/
 	if ((amountOfType[0] > amountOfType[1]) && (amountOfType[0] > amountOfType[2])) {
 		delete[] amountOfType;
+		this->setType("Iris-setosa");
 		return "Iris-setosa";
 	}
 	else if ((amountOfType[1] > amountOfType[0]) && (amountOfType[1] > amountOfType[2])) {
 		delete[] amountOfType;
+		this->setType("Iris-virginica");
 		return "Iris-virginica";
 	}
 	else if ((amountOfType[2] > amountOfType[1]) && (amountOfType[2] > amountOfType[0])) {
 		delete[] amountOfType;
+		this->setType("Iris-versicolor");
 		return "Iris-versicolor";
 	}
 	delete[] amountOfType;

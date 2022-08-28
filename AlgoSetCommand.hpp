@@ -6,14 +6,10 @@
 
 class AlgoSetCommand : public Command {
     private:
-        string description;
-        DefaultIO m_dio;
         int* m_pk;
         string* m_pk;
     public:
         AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName);
-        string getDescription();
-        void execute();
 };
 
 

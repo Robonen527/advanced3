@@ -77,7 +77,7 @@ void typesToFile(string types, string fileName) {
     ofstream output;
     output.open(fileName);
     int i, j = 0, counter = 0;
-	const char comma = ' ';
+	const char comma = ',';
 	while ((i = types.find(comma, j)) != -1) {
         output << types.substr(j, i - j) << endl;
         counter++;

@@ -6,13 +6,15 @@
 
 class ClassifyCommand : public Command {
     private:
-        string description;
-        DefaultIO m_dio;
         string m_unClassifiedFile;
+        string m_funcName;
+        int m_k;
+        Iris* m_afterClassified;
+        int m_lengthOfAC;
     public:
-        ClassifyCommand(DefaultIO dio, string unClassifiedFile);
-        string getDescription();
-        void execute();
+        ClassifyCommand(DefaultIO dio, string unClassifiedFile, string funcName, int k);
+        Iris* getAfterClassifeid();
+        int getLengthOfAC();
 };
 
 
