@@ -2,13 +2,13 @@
 
 UploadCommand::UploadCommand(DefaultIO dio) {
     m_dio = dio;
+    description = "1. upload an unclassified csv data file\n";
 }
-void UploadCommand::setDescription() {
-    m_description = "1. upload an unclassified csv data file\n";
-}
+
 string UploadCommand::getDescription() {
-    return m_description;
+    return description;
 }
+
 void UploadCommand::execute() {
     m_dio.write("Please upload your local train csv file.\n");
     string pathTrain = m_dio.read();

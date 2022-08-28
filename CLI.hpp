@@ -1,5 +1,5 @@
-#ifndef CLI
-#define CLI
+#ifndef cli
+#define cli
 
 #include "Command.hpp"
 #include <vector>
@@ -13,4 +13,4 @@ class CLI {
 };
 
 
-#endif // CLI
+#endif // cli

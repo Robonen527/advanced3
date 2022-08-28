@@ -7,7 +7,7 @@ using namespace std;
 
 class Command {
     private:
-        string m_description;
+        string description;
         DefaultIO m_dio;
     public:
         virtual void execute();

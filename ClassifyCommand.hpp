@@ -1,17 +1,16 @@
-#ifndef ALGOSETCOMMAND
-#define ALGOSETCOMMAND
+#ifndef CLASSIFYCOMMAND
+#define CLASSIFYCOMMAND
 
 #include "Command.hpp"
 #include "Iris.hpp"
 
-class AlgoSetCommand : public Command {
+class ClassifyCommand : public Command {
     private:
         string description;
         DefaultIO m_dio;
-        int* m_pk;
-        string* m_pk;
+        string m_unClassifiedFile;
     public:
-        AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName);
+        ClassifyCommand(DefaultIO dio, string unClassifiedFile);
         string getDescription();
         void execute();
 };

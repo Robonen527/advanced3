@@ -4,14 +4,11 @@ AlgoSetCommand::AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName) {
     m_dio = dio;
     m_pk = pk;
     m_pfuncName = pfuncName;
-}
-
-void AlgoSetCommand::setDescription() {
-    m_description = "2. algorithm settings\n";
+    description = "2. algorithm settings\n";
 }
 
 string AlgoSetCommand::getDescription() {
-    return m_description;
+    return description;
 }
 
 void AlgoSetCommand::execute() {
