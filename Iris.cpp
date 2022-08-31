@@ -156,17 +156,14 @@ string Iris::classify(Iris* irises, int k, int length, double (Iris::* distanceF
 	*/
 	if ((amountOfType[0] > amountOfType[1]) && (amountOfType[0] > amountOfType[2])) {
 		delete[] amountOfType;
-		this->setType("Iris-setosa");
 		return "Iris-setosa";
 	}
 	else if ((amountOfType[1] > amountOfType[0]) && (amountOfType[1] > amountOfType[2])) {
 		delete[] amountOfType;
-		this->setType("Iris-virginica");
 		return "Iris-virginica";
 	}
 	else if ((amountOfType[2] > amountOfType[1]) && (amountOfType[2] > amountOfType[0])) {
 		delete[] amountOfType;
-		this->setType("Iris-versicolor");
 		return "Iris-versicolor";
 	}
 	delete[] amountOfType;

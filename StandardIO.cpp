@@ -1,7 +1,7 @@
 #include "StandardIO.hpp"
 
 void StandardIO::write(string str) {
-    cout << str << endl;
+    cout << str;
 }
 
 string StandardIO::read() {
