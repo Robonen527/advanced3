@@ -7,7 +7,7 @@
 class AlgoSetCommand : public Command {
     private:
         int* m_pk;
-        string* m_pk;
+        string* m_pfuncName;
     public:
         AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName);
 };
