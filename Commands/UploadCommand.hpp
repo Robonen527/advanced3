@@ -2,7 +2,6 @@
 #define UPLOADCOMMAND
 
 #include "Command.hpp"
-#include "FilesFunc.hpp"
 
 class UploadCommand : public Command {
     private:

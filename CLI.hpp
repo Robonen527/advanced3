@@ -1,12 +1,12 @@
 #ifndef cli
 #define cli
 
-#include "UploadCommand.hpp"
-#include "AlgoSetCommand.hpp"
-#include "ClassifyCommand.hpp"
-#include "PrintClassifyCommand.hpp"
-#include "SaveClassifyCommand.hpp"
-#include "ConfusionMatrixCommand.hpp"
+#include "Commands/UploadCommand.hpp"
+#include "Commands/AlgoSetCommand.hpp"
+#include "Commands/ClassifyCommand.hpp"
+#include "Commands/PrintClassifyCommand.hpp"
+#include "Commands/SaveClassifyCommand.hpp"
+#include "Commands/ConfusionMatrixCommand.hpp"
 
 class CLI {
     private:

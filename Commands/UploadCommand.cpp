@@ -14,10 +14,10 @@ string UploadCommand::getDescription() {
 void UploadCommand::execute() {
     m_dio.write("Please upload your local train csv file.\n");
     string trainPath = m_dio.read();
-    m_pathToTrain* = trainPath;
+    *m_pathToTrain = trainPath;
     m_dio.write("Upload complete.\n");
     m_dio.write("Please upload your local test csv file.\n");
     string testPath = m_dio.read();
-    m_pathToTest* = testPath;
+    *m_pathToTest = testPath;
     m_dio.write("Upload complete.\n");
 }

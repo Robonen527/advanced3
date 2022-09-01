@@ -2,7 +2,7 @@
 #define COMMAND
 
 #include <string>
-#include "DefaultIO.hpp"
+#include "../IOs/DefaultIO.hpp"
 using namespace std;
 
 class Command {
