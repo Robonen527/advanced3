@@ -58,4 +58,11 @@ string fileToString(string fileName);
  * @param fileName The name of the file.
  */
 void typesToFile(string types, string fileName);
+/**
+ * @brief The function get a string of irises and create a file with the data.
+ * 
+ * @param irises The string of irises.
+ * @return The name of the file.
+ */
+string stringToFile(string irises);
 #endif // FilesFunc
