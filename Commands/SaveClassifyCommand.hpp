@@ -13,7 +13,8 @@ class SaveClassifyCommand : public Command {
     public:
         void execute() override;
         string getDescription() override;
-        SaveClassifyCommand(DefaultIO dio, Iris* classifiedIrises, int lengthOfC);
+        SaveClassifyCommand(DefaultIO dio);
+        void setClassifiedIrises(Iris* irises, int amountOfIrises);
 };
 
 

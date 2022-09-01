@@ -11,7 +11,8 @@ class PrintClassifyCommand : public Command {
     public:
         void execute() override;
         string getDescription() override;
-        PrintClassifyCommand(DefaultIO dio, Iris* classifiedIrises, int lengthOfC);
+        PrintClassifyCommand(DefaultIO dio);
+        void setClassifiedIrises(Iris* irises, int amountOfIrises);
 };
 
 

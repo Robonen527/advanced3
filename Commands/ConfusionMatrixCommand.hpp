@@ -6,13 +6,14 @@
 
 class ConfusionMatrixCommand : public Command {
     private:
-        string m_classified;
-        string m_funcName;
-        int m_k;
+        string* m_pclassified;
+        string* m_pfuncName;
+        int* m_pk;
     public:
         void execute() override;
         string getDescription() override;
-        ConfusionMatrixCommand(DefaultIO dio, string classifiedFile, string funcName, int k);
+        ConfusionMatrixCommand(DefaultIO dio, string* classifiedFile,
+        string* funcName, int* k);
 };
 
 
