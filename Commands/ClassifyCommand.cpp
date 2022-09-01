@@ -5,13 +5,13 @@ ClassifyCommand::ClassifyCommand(DefaultIO dio, string unClassifiedFile, string 
     m_dio = dio;
     m_unClassifiedFile = unClassifiedFile; 
     m_classified = classified;
-    description = "3. classify data\n";
+    m_description = "3. classify data\n";
     m_funcName = funcName;
     m_k = k;
 }
 
 string ClassifyCommand::getDescription() {
-    return description;
+    return m_description;
 }
 
 void ClassifyCommand::execute() {

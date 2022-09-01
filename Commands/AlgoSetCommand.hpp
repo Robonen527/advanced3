@@ -9,6 +9,8 @@ class AlgoSetCommand : public Command {
         int* m_pk;
         string* m_pfuncName;
     public:
+        void execute() override;
+        string getDescription() override;
         AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName);
 };
 

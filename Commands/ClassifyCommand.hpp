@@ -13,6 +13,8 @@ class ClassifyCommand : public Command {
         Iris* m_afterClassified;
         int m_lengthOfAC;
     public:
+        void execute() override;
+        string getDescription() override;
         ClassifyCommand(DefaultIO dio, string unClassifiedFile, string classified, string funcName, int k);
         Iris* getAfterClassifeid();
         int getLengthOfAC();

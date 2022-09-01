@@ -11,6 +11,8 @@ class SaveClassifyCommand : public Command {
         int m_lengthOfC;
         string m_path;
     public:
+        void execute() override;
+        string getDescription() override;
         SaveClassifyCommand(DefaultIO dio, Iris* classifiedIrises, int lengthOfC, string path);
 };
 

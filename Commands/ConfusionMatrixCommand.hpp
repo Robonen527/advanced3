@@ -10,6 +10,8 @@ class ConfusionMatrixCommand : public Command {
         string m_funcName;
         int m_k;
     public:
+        void execute() override;
+        string getDescription() override;
         ConfusionMatrixCommand(DefaultIO dio, string classifiedFile, string funcName, int k);
 };
 

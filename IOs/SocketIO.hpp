@@ -6,8 +6,8 @@ using namespace std;
 
 class SocketIO : public DefaultIO{
     public:
-        void write(string str);
-        string read();
+        void write(string str) override;
+        string read() override;
 
 };
 

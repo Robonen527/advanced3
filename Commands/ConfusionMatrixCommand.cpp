@@ -2,7 +2,7 @@
 
 ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO dio, string classifiedFile, string funcName, int k) {
     m_dio = dio;
-    description = "6. display algorithm confusion matrix\n";
+    m_description = "6. display algorithm confusion matrix\n";
     m_classified = classifiedFile;
     m_funcName = funcName;
     m_k = k;

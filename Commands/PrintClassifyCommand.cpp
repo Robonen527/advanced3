@@ -2,13 +2,13 @@
 
 PrintClassifyCommand::PrintClassifyCommand(DefaultIO dio, Iris* classifiedIrises, int lengthOfC) {
     m_dio = dio;
-    description = "4. display results\n";
+    m_description = "4. display results\n";
     m_classifiedIrises = classifiedIrises;
     m_lengthOfC = lengthOfC;
 }
 
 string PrintClassifyCommand::getDescription() {
-    return description;
+    return m_description;
 }
 
 void PrintClassifyCommand::execute() {

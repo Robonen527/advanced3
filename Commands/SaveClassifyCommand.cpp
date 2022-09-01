@@ -2,14 +2,14 @@
 
 SaveClassifyCommand::SaveClassifyCommand(DefaultIO dio, Iris* classifiedIrises, int lengthOfC, string path) {
     m_dio = dio;
-    description = "5. download results\n";
+    m_description = "5. download results\n";
     m_classifiedIrises = classifiedIrises;
     m_lengthOfC = lengthOfC;
     m_path = path;
 }
 
 string SaveClassifyCommand::getDescription() {
-    return description;
+    return m_description;
 }
 
 void SaveClassifyCommand::execute() {
