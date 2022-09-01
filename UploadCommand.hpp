@@ -10,6 +10,8 @@ class UploadCommand : public Command {
         string m_pathToTest;
     public:
         UploadCommand(DefaultIO dio);
+        void execute() override;
+        string getDescription() override;
         string getTrainPath();
         string getTestPath();
 };

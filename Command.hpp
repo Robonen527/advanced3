@@ -10,8 +10,8 @@ class Command {
         string description;
         DefaultIO m_dio;
     public:
-        virtual void execute();
-        virtual string getDescription();
+        virtual void execute() = 0;
+        virtual string getDescription() = 0;
 };
 
 
