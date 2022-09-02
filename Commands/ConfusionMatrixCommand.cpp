@@ -1,6 +1,6 @@
 #include "ConfusionMatrixCommand.hpp"
 
-ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO dio,
+ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO* dio,
 string* classifiedFile, string* funcName, int* k) {
     m_dio = dio;
     m_description = "6. display algorithm confusion matrix\n";
@@ -10,7 +10,7 @@ string* classifiedFile, string* funcName, int* k) {
 }
 
 string ConfusionMatrixCommand::getDescription() {
-    return description;
+    return m_description;
 }
 
 void ConfusionMatrixCommand::execute() {
@@ -132,26 +132,16 @@ void ConfusionMatrixCommand::execute() {
             }
         }
     }
-    m_dio.write("Iris-setosa\t");
-    m_dio.write(((amountOfRight[0][0] / (amountOfRight[0][0] + amountOfRight[0][1]
-    + amountOfRight[0][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[0][1] / (amountOfRight[0][0] + amountOfRight[0][1]
-    + amountOfRight[0][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[0][2] / (amountOfRight[0][0] + amountOfRight[0][1]
-    + amountOfRight[0][2])) * 100) + "%\n");
-    m_dio.write("Iris-virginica\t");
-    m_dio.write(((amountOfRight[1][0] / (amountOfRight[1][0] + amountOfRight[1][1]
-    + amountOfRight[1][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[1][1] / (amountOfRight[1][0] + amountOfRight[1][1]
-    + amountOfRight[1][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[1][2] / (amountOfRight[1][0] + amountOfRight[1][1]
-    + amountOfRight[1][2])) * 100) + "%\n");
-    m_dio.write("Iris-versicolor\t");
-    m_dio.write(((amountOfRight[2][0] / (amountOfRight[2][0] + amountOfRight[2][1]
-    + amountOfRight[2][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[2][1] / (amountOfRight[2][0] + amountOfRight[2][1]
-    + amountOfRight[2][2])) * 100) + "%\t");
-    m_dio.write(((amountOfRight[2][2] / (amountOfRight[2][0] + amountOfRight[2][1]
-    + amountOfRight[2][2])) * 100) + "%\n");
-    m_dio.write("\tIris-setosa\tIris-virginica\tIris-versicolor\n");
+    string types[3] = {"Iris-setosa\t", "Iris-virginica\t", "Iris-versicolor\t"};
+    double doubToTheMat[3][3];
+    for (int i = 0; i < 3; i++) {
+        m_dio->write(types[i]);
+        for (int j = 0; j < 3; j++) {
+            doubToTheMat[i][j] = (amountOfRight[i][j] / (amountOfRight[i][0]
+            + amountOfRight[i][1] + amountOfRight[i][2])) * 100;
+            m_dio->write(to_string((int)round(doubToTheMat[i][j])) + "%\t");
+        }
+        m_dio->write("\n");
+    }
+    m_dio->write("\tIris-setosa\tIris-virginica\tIris-versicolor\n");
 }

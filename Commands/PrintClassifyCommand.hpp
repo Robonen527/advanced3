@@ -2,7 +2,7 @@
 #define PRINTCLASSIFYCOMMAND
 
 #include "Command.hpp"
-#include "Iris.hpp"
+#include "../Iris.hpp"
 
 /**
  * @brief This is the print-classify command.
@@ -20,7 +20,7 @@ class PrintClassifyCommand : public Command {
          * 
          * @param dio (the IO)
          */
-        PrintClassifyCommand(DefaultIO dio);
+        PrintClassifyCommand(DefaultIO* dio);
         /**
          * @brief Set the Classified Irises and the amount of the classified irises.
          * 

@@ -1,6 +1,6 @@
 #include "ClassifyCommand.hpp"
 
-ClassifyCommand::ClassifyCommand(DefaultIO dio, string* unClassifiedFile,
+ClassifyCommand::ClassifyCommand(DefaultIO* dio, string* unClassifiedFile,
 string* classified, string* funcName, int* k) {
     m_dio = dio;
     m_punClassifiedFile = unClassifiedFile; 
@@ -35,7 +35,7 @@ void ClassifyCommand::execute() {
             &Iris::chebyshevDistance));
         }
     }
-    m_dio.write("classifying data complete\n");
+    m_dio->write("classifying data complete\n");
     m_lengthOfAC = amountOfUC;
     m_afterClassified = unClassified;
 }

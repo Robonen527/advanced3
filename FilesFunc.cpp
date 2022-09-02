@@ -86,6 +86,6 @@ void typesToFile(string types, string fileName) {
     output.close();
 }
 
-string stringToFile(string irises) {
+// string stringToFile(string irises) {
 
-}
+// }

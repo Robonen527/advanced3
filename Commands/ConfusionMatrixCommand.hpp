@@ -2,7 +2,9 @@
 #define CONFUSIONMATRIXCOMMAND
 
 #include "Command.hpp"
-#include "Iris.hpp"
+#include "../Iris.hpp"
+#include "../FilesFunc.hpp"
+#include <cmath>
 
 /**
  * @brief The class of the confusion matrix command.
@@ -24,7 +26,7 @@ class ConfusionMatrixCommand : public Command {
          * @param funcName (a pointer to the name of the metric function)
          * @param k (a pointer to the k param of the KNN)
          */
-        ConfusionMatrixCommand(DefaultIO dio, string* classifiedFile,
+        ConfusionMatrixCommand(DefaultIO* dio, string* classifiedFile,
         string* funcName, int* k);
 };
 

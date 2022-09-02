@@ -64,5 +64,5 @@ void typesToFile(string types, string fileName);
  * @param irises The string of irises.
  * @return The name of the file.
  */
-string stringToFile(string irises);
+//string stringToFile(string irises);
 #endif // FilesFunc

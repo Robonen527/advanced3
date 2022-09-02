@@ -2,8 +2,8 @@
 #define CLASSIFYCOMMAND
 
 #include "Command.hpp"
-#include "Iris.hpp"
-#include "FilesFunc.hpp"
+#include "../Iris.hpp"
+#include "../FilesFunc.hpp"
 
 /**
  * @brief This is the class of the Classify command.
@@ -29,7 +29,7 @@ class ClassifyCommand : public Command {
          * @param funcName (the name of the metric func)
          * @param k (the k parm for the KNN).
          */
-        ClassifyCommand(DefaultIO dio, string* unClassifiedFile,
+        ClassifyCommand(DefaultIO* dio, string* unClassifiedFile,
         string* classified, string* funcName, int* k);
         /**
          * @brief Get the After Classifeid Irises.

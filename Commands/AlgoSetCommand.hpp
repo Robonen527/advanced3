@@ -2,7 +2,7 @@
 #define ALGOSETCOMMAND
 
 #include "Command.hpp"
-#include "Iris.hpp"
+#include "../Iris.hpp"
 
 /**
  * @brief This is the class of the algorithm settings command.
@@ -22,7 +22,7 @@ class AlgoSetCommand : public Command {
          * @param pk (a pointer to the k param of the KNN)
          * @param pfuncName (a pointer to the name of the metric func)
          */
-        AlgoSetCommand(DefaultIO dio, int* pk, string* pfuncName);
+        AlgoSetCommand(DefaultIO* dio, int* pk, string* pfuncName);
 };
 
 

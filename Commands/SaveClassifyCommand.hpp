@@ -2,8 +2,8 @@
 #define SAVECLASSIFYCOMMAND
 
 #include "Command.hpp"
-#include "Iris.hpp"
-#include "FilesFunc.hpp"
+#include "../Iris.hpp"
+#include "../FilesFunc.hpp"
 
 /**
  * @brief This is the class of the save-classify command.
@@ -22,7 +22,7 @@ class SaveClassifyCommand : public Command {
          * 
          * @param dio (the IO)
          */
-        SaveClassifyCommand(DefaultIO dio);
+        SaveClassifyCommand(DefaultIO* dio);
         /**
          * @brief Set the Classified Irises and the amount of the classified Irises.
          * 

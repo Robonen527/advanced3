@@ -19,7 +19,7 @@ class UploadCommand : public Command {
      * @param pathToTrain (a pointer to the path of the train file to update the path) 
      * @param pathToTest (a pointer to the path of the train file to update the path)
      */
-        UploadCommand(DefaultIO &dio, string* pathToTrain, string* pathToTest);
+        UploadCommand(DefaultIO* dio, string* pathToTrain, string* pathToTest);
         void execute() override;
         string getDescription() override;
 };

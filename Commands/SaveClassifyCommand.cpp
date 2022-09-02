@@ -1,6 +1,6 @@
 #include "SaveClassifyCommand.hpp"
 
-SaveClassifyCommand::SaveClassifyCommand(DefaultIO dio) {
+SaveClassifyCommand::SaveClassifyCommand(DefaultIO* dio) {
     m_dio = dio;
     m_description = "5. download results\n";
     m_classifiedIrises = NULL;
@@ -12,11 +12,11 @@ string SaveClassifyCommand::getDescription() {
 
 void SaveClassifyCommand::execute() {
     if (m_classifiedIrises == NULL) {
-        m_dio.write("There isn't classifiedIrises\n");
+        m_dio->write("There isn't classifiedIrises\n");
         return;
     }
-    m_dio.write("Enter a path to the results file:\n");
-    string path = m_dio.read();
+    m_dio->write("Enter a path to the results file:\n");
+    string path = m_dio->read();
     string fileName = path.append("/results.txt");
     string toWrite = "";
     for (int i = 0; i < m_lengthOfC; i++) {
@@ -24,6 +24,7 @@ void SaveClassifyCommand::execute() {
     }
     toWrite += "Done.,";
     typesToFile(toWrite, fileName);
+    m_dio->write("Done.\n");
 }
 
 void SaveClassifyCommand::setClassifiedIrises(Iris* irises, int amountOfIrises) {
