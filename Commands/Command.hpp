@@ -12,7 +12,7 @@ using namespace std;
 class Command {
     protected:
         string m_description;
-        DefaultIO m_dio;
+        DefaultIO* m_dio;
     public:
     /**
      * @brief This func is responsible for the execute of the command.
