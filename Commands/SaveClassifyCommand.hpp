@@ -2,8 +2,8 @@
 #define SAVECLASSIFYCOMMAND
 
 #include "Command.hpp"
-#include "../Iris.hpp"
-#include "../FilesFunc.hpp"
+#include "../Generals/Iris.hpp"
+#include "../Generals/FilesFunc.hpp"
 
 /**
  * @brief This is the class of the save-classify command.

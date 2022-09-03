@@ -2,7 +2,7 @@
 #define ALGOSETCOMMAND
 
 #include "Command.hpp"
-#include "../Iris.hpp"
+#include "../Generals/Iris.hpp"
 
 /**
  * @brief This is the class of the algorithm settings command.

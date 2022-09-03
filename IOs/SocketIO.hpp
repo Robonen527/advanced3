@@ -9,15 +9,13 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-#include "FilesFunc.hpp"
-#include "Iris.hpp"
 using namespace std;
 
 class SocketIO : public DefaultIO{
     private:
-        int m_socket;
+        int m_client_sock;
     public:
-        SocketIO();
+        SocketIO(int client_sock);
         void write(string str) override;
         string read() override;
 

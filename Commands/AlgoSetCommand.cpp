@@ -35,4 +35,5 @@ void AlgoSetCommand::execute() {
     } while (!((m_pfuncName->compare("EUC") == 0) ||
         (m_pfuncName->compare("MAN") == 0) ||
         (m_pfuncName->compare("CHE") == 0)));
+    m_dio->write("ok.\nk: " + to_string(*m_pk) + "func: " + *m_pfuncName + "\n");
 }

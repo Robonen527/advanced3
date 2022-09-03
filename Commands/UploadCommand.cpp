@@ -12,13 +12,14 @@ string UploadCommand::getDescription() {
 }
 
 void UploadCommand::execute() {
-    cout << "start" << endl;
-    m_dio->write("Please upload your local train csv file.\n");
+    string toWrite = "Please upload your local train csv file.\n";
+    m_dio->write(toWrite);
     string trainPath = m_dio->read();
     *m_pathToTrain = trainPath;
-    m_dio->write("Upload complete.\n");
-    m_dio->write("Please upload your local test csv file.\n");
+    toWrite = "Upload complete.\nPlease upload your local test csv file.\n";
+    m_dio->write(toWrite);
     string testPath = m_dio->read();
     *m_pathToTest = testPath;
-    m_dio->write("Upload complete.\n");
+    toWrite = "Upload complete.\n";
+    m_dio->write(toWrite);
 }

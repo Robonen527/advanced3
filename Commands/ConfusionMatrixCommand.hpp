@@ -2,8 +2,8 @@
 #define CONFUSIONMATRIXCOMMAND
 
 #include "Command.hpp"
-#include "../Iris.hpp"
-#include "../FilesFunc.hpp"
+#include "../Generals/Iris.hpp"
+#include "../Generals/FilesFunc.hpp"
 #include <cmath>
 
 /**

@@ -134,14 +134,17 @@ void ConfusionMatrixCommand::execute() {
     }
     string types[3] = {"Iris-setosa\t", "Iris-virginica\t", "Iris-versicolor\t"};
     double doubToTheMat[3][3];
+    string toWrite = "";
     for (int i = 0; i < 3; i++) {
-        m_dio->write(types[i]);
+        toWrite += types[i];
         for (int j = 0; j < 3; j++) {
             doubToTheMat[i][j] = (amountOfRight[i][j] / (amountOfRight[i][0]
             + amountOfRight[i][1] + amountOfRight[i][2])) * 100;
-            m_dio->write(to_string((int)round(doubToTheMat[i][j])) + "%\t");
+            toWrite += to_string((int)round(doubToTheMat[i][j]));
+            toWrite += "%\t";
         }
-        m_dio->write("\n");
+        toWrite += "\n";
     }
-    m_dio->write("\tIris-setosa\tIris-virginica\tIris-versicolor\n");
+    toWrite += "\tIris-setosa\tIris-virginica\tIris-versicolor\n";
+    m_dio->write(toWrite);
 }

@@ -7,12 +7,13 @@
 #include "PrintClassifyCommand.hpp"
 #include "SaveClassifyCommand.hpp"
 #include "ConfusionMatrixCommand.hpp"
+#include "../IOs/DefaultIO.hpp"
 
 class CLI {
     private:
         DefaultIO* m_dio;
     public:
-        CLI(DefaultIO* dio);
+        CLI(DefaultIO* dio, int num);
         void start();
 };
 

@@ -1,14 +1,97 @@
-#include <iostream>
-#include <sys/socket.h>
-#include <stdio.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include "FilesFunc.hpp"
-#include "Iris.hpp"
+#include "client.hpp"
 
-using namespace std;
+void run(int sock) {
+    int choice;
+    string s;
+    while (true) {
+        cout << read(sock);
+        cin >> s;
+        choice = stoi(s);
+    
+        if (send(sock, s.c_str(), s.length(), 0) < 0) {
+            perror("error");
+        }
+
+        switch (choice)
+        {
+        case 1:
+            cout << read(sock);
+            send(sock);
+            cout << read(sock);
+            send(sock);
+            cout << read(sock);
+            break;
+        
+        case 2:
+            cout << read(sock);
+            cout << read(sock);
+            send(sock);
+            s = read(sock);
+            while (s.compare("invalid k parameter\n") == 0) {
+                cout << s;
+                cout << read(sock);
+                send(sock);
+                s = read(sock);
+            }
+            cout << s;
+            s = read(sock);
+            while (s.compare("invalid func name (choose 'EUC'/'MAN'/'CHE')\n") == 0) {
+                cout << s;
+                cout << read(sock);
+                send(sock);
+                s = read(sock);
+            }
+            break;
+        case 3:
+            cout << read(sock);
+            break;
+        case 4:
+            s = read(sock);
+            while (!(s.compare("Done.\n") == 0)) {
+                cout << s;
+                s = read(sock);
+            }
+            break;
+        case 5:
+            cout << read(sock);
+            break;
+        case 6:
+            cout << read(sock);
+            break;
+        case 7:
+            return;
+        default:
+            cout << "invalid option, please choose number between 1-7\n";
+            break;
+        }
+    }
+}
+
+string read(int sock) {
+    char buffer[4096] = {0};
+    int read_bytes;
+    read_bytes = recv(sock, buffer, sizeof(buffer), 0);
+    if (read_bytes == 0) {
+        perror("error");
+        return "";
+    }
+    else if (read_bytes < 0) {
+        perror("error");
+        return "";
+    }
+    else {
+        return string(buffer);
+    }
+}
+
+void send(int sock) {
+    string toSend;
+    cin >> toSend;
+    if (send(sock, toSend.c_str(), toSend.length(), 0) < 0) {
+        perror("error");
+    }
+}
+
 /**
  * @brief The main function is responsible for the operating of the client.
  * 
@@ -18,7 +101,6 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     cout << "CLIENT" << endl;
-    const string inputFile = argv[1], outputFile = argv[2];
     const char* ip_address = "127.0.0.1";
     const int port_no = 5555;
 
@@ -35,29 +117,7 @@ int main(int argc, char** argv) {
         perror("error connecting to server");
     }
 
-    string data = fileToString(inputFile);
-    int data_len = data.length();
-    cout << "sending to the server..." << endl;
-    int sent_bytes = send(sock, data.c_str(), data_len, 0);
-    cout << "been sent" << endl;
-    if (sent_bytes < 0) {
-        perror("error");
-    }
-
-    char buffer[4096];
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(sock, buffer, expected_data_len, 0);
-    cout << "received it" << endl;
-    if (read_bytes == 0) {
-        perror("error");
-    }
-    else if (read_bytes < 0) {
-        perror("error");
-    }
-    else {
-        typesToFile(string(buffer), outputFile);
-        cout << "thank you" << endl;
-    }
+    run(sock);
 
     close(sock);
 

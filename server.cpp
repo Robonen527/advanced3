@@ -5,8 +5,11 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-#include "FilesFunc.hpp"
-#include "Iris.hpp"
+#include "Generals/FilesFunc.hpp"
+#include "Generals/Iris.hpp"
+#include "IOs/SocketIO.hpp"
+#include "Commands/CLI.hpp"
+#include <thread>
 
 using namespace std;
 /**
@@ -16,10 +19,6 @@ using namespace std;
  */
 int main() {
     cout << "SERVER" << endl;
-    string classifiedFile = "classified.csv";
-    // The path to the data about the classified irises.
-    Iris* classified = readFile(classifiedFile);
-    int numOfClassified = lengthOfFile(classifiedFile);
     const int server_port = 5555;
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -44,43 +43,13 @@ int main() {
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
     int client_sock = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
-
     if (client_sock < 0) {
         perror("error accepting client");
     }
 
-    char buffer[4096];
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
-    string types = "";
-    if (read_bytes == 0) {
-        close(client_sock);
-    }
-    else if (read_bytes < 0) {
-        perror("error");
-    }
-    else {
-        // creating a string of types based on classified.
-        cout << "Classify..." << endl;
-        int counter;
-        Iris* unClassified = Iris::stringToIrises(string(buffer), counter);
-        for (int i = 0; i < counter; i++) {
-            types += unClassified[i].classify(classified, 5, numOfClassified,
-            &Iris::euclideanDistance);
-            types += " ";
-        }
-        delete[] unClassified;
-        cout << "classified successfully!" << endl;
-    }
-    int length = types.length();
-    int sent_bytes = send(client_sock, types.c_str(), length, 0);
-    cout << "sent it back to the client" << endl;
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
-
-    delete[] classified;
-
+    SocketIO clientIO(client_sock);
+    CLI cli1(&clientIO, 0);
+    cli1.start();
     close(sock);
 
 

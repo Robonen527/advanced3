@@ -2,7 +2,7 @@
 #define PRINTCLASSIFYCOMMAND
 
 #include "Command.hpp"
-#include "../Iris.hpp"
+#include "../Generals/Iris.hpp"
 
 /**
  * @brief This is the print-classify command.
