@@ -58,6 +58,7 @@ client:
 כעת בכדי לקמפל את השרת נכתוב:
 
 g++ -std=c++11 -pthread Commands/*.cpp IOs/*.cpp Generals/*.cpp server.cpp -o server.out_
+
 (לפני ה.cpp ואחרי ה/ יש כוכבית אבל לא רואים בגלל שהreadme משנה את הטקסט אם הוא בין שתי כוכביות).
 
 ובכדי לקמפל את הלקוחות נכתוב:
