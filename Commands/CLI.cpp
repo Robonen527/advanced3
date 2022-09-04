@@ -1,7 +1,7 @@
 #include "CLI.hpp"
 using namespace std;
 
-CLI::CLI(DefaultIO* dio, int num) {
+CLI::CLI(DefaultIO* dio) {
     m_dio = dio;
 }
 
@@ -17,7 +17,7 @@ void CLI::start() {
     ConfusionMatrixCommand cmc(m_dio, &pathTrain, &funcName, &k);
     Command* commands[6] = {&uc, &asc, &cc, &pcc, &scc, &cmc};
     while(true) {
-        string toWrite = "Welcome to the KNN Classifier Server. Please choose an option:\n";
+        string toWrite = "\nWelcome to the KNN Classifier Server. Please choose an option:\n";
         for (int i = 0; i < 6; i++) {
             toWrite += commands[i]->getDescription();
         }

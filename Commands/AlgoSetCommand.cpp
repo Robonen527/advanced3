@@ -22,7 +22,9 @@ void AlgoSetCommand::execute() {
             m_dio->write("invalid k parameter\n");
         }
         m_dio->write("enter k: ");
-        *m_pk = stoi(m_dio->read());
+        string s = m_dio->read();
+        if (s.empty()) break;
+        *m_pk = stoi(s);
     } while (!((*m_pk >=1) && (*m_pk <=10)));
     do {
         if (!((m_pfuncName->compare("EUC") == 0) ||
@@ -31,9 +33,11 @@ void AlgoSetCommand::execute() {
             m_dio->write("invalid func name (choose 'EUC'/'MAN'/'CHE')\n");
         }
         m_dio->write("enter func name: ");
-        *m_pfuncName = m_dio->read();
+        string s = m_dio->read();
+        if (s.empty()) break;
+        *m_pfuncName = s;
     } while (!((m_pfuncName->compare("EUC") == 0) ||
         (m_pfuncName->compare("MAN") == 0) ||
         (m_pfuncName->compare("CHE") == 0)));
-    m_dio->write("ok.\nk: " + to_string(*m_pk) + "func: " + *m_pfuncName + "\n");
+    m_dio->write("ok.\nk: " + to_string(*m_pk) + "\tfunc name: " + *m_pfuncName + "\n");
 }

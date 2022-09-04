@@ -34,6 +34,7 @@ void run(int sock) {
                 s = read(sock);
             }
             cout << s;
+            send(sock);
             s = read(sock);
             while (s.compare("invalid func name (choose 'EUC'/'MAN'/'CHE')\n") == 0) {
                 cout << s;
@@ -41,19 +42,20 @@ void run(int sock) {
                 send(sock);
                 s = read(sock);
             }
+            cout << s;
             break;
         case 3:
             cout << read(sock);
             break;
         case 4:
-            s = read(sock);
-            while (!(s.compare("Done.\n") == 0)) {
-                cout << s;
+            do {
                 s = read(sock);
-            }
+                cout << s;
+            } while (!(s.compare("Done.\n") == 0));
             break;
         case 5:
             cout << read(sock);
+            send(sock);
             break;
         case 6:
             cout << read(sock);

@@ -4,6 +4,7 @@
 #include "Command.hpp"
 #include "../Generals/Iris.hpp"
 #include "../Generals/FilesFunc.hpp"
+#include <thread>
 
 /**
  * @brief This is the class of the save-classify command.

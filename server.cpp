@@ -1,17 +1,22 @@
-#include <iostream>
-#include <sys/socket.h>
-#include <stdio.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include "Generals/FilesFunc.hpp"
-#include "Generals/Iris.hpp"
-#include "IOs/SocketIO.hpp"
-#include "Commands/CLI.hpp"
-#include <thread>
+#include "server.hpp"
 
 using namespace std;
+
+void runClient(CLI client) {
+    client.start();
+}
+
+void acceptClient(int sock, int& client, bool& accepted) {
+    accepted = false;
+    struct sockaddr_in client_sin;
+    unsigned int addr_len = sizeof(client_sin);
+    client = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
+    if (client < 0) {
+        perror("error accepting client");
+    }
+    accepted = true;
+}
+
 /**
  * @brief The main is responsible for the server operation.
  * 
@@ -40,18 +45,35 @@ int main() {
         perror("error listening to a socket");
     }
 
+
+    // int x = 5;
+    // while (x > 0) {
+    //     int client_sock;
+    //     bool accepted = false;
+    //     thread tryAccept(acceptClient, (sock, client_sock, accepted));
+    //     tryAccept.join();
+    //     sleep(20);
+    //     if (!accepted) break; 
+    //     SocketIO clientIO(client_sock);
+    //     CLI cli1(&clientIO);
+    //     thread client_thread(runClient, cli1);
+    //     client_thread.join();
+    // }
+    // cout << "don't accept clients anymore\n";
+
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
     int client_sock = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
     if (client_sock < 0) {
         perror("error accepting client");
     }
-
     SocketIO clientIO(client_sock);
-    CLI cli1(&clientIO, 0);
-    cli1.start();
-    close(sock);
+    CLI cli1(&clientIO);
+    thread client_thread(runClient, cli1);
+    client_thread.join();
 
+
+    close(sock);
 
     return 0;
 }

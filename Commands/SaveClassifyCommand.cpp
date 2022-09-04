@@ -20,11 +20,14 @@ void SaveClassifyCommand::execute() {
     string fileName = path.append("/results.txt");
     string toWrite = "";
     for (int i = 0; i < m_lengthOfC; i++) {
-        toWrite += (i+1) + " " +  m_classifiedIrises[i].type() + ",";
+        toWrite += to_string(i+1); 
+        toWrite += " "; 
+        toWrite +=  m_classifiedIrises[i].type();
+        toWrite += "\n";
     }
-    toWrite += "Done.,";
-    typesToFile(toWrite, fileName);
-    m_dio->write("Done.\n");
+    toWrite += "Done.\n";
+    thread to_file(typesToFile, toWrite, fileName);
+    to_file.join();
 }
 
 void SaveClassifyCommand::setClassifiedIrises(Iris* irises, int amountOfIrises) {

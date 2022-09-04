@@ -9,11 +9,21 @@
 #include "ConfusionMatrixCommand.hpp"
 #include "../IOs/DefaultIO.hpp"
 
+/**
+ * @brief this is the classof the "command line interface" of this program.
+ * 
+ */
 class CLI {
     private:
         DefaultIO* m_dio;
     public:
-        CLI(DefaultIO* dio, int num);
+    /**
+     * @brief Construct a new CLI object.
+     * 
+     * @param dio (the default io stream)
+     * @param num ()
+     */
+        CLI(DefaultIO* dio);
         void start();
 };
 

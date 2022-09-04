@@ -11,10 +11,19 @@
 #include <string.h>
 using namespace std;
 
+/**
+ * @brief This is the socketIO stream.
+ * 
+ */
 class SocketIO : public DefaultIO{
     private:
         int m_client_sock;
     public:
+    /**
+     * @brief Construct a new Socket I O object.
+     * 
+     * @param client_sock (the client sock).
+     */
         SocketIO(int client_sock);
         void write(string str) override;
         string read() override;

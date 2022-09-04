@@ -20,6 +20,6 @@ void UploadCommand::execute() {
     m_dio->write(toWrite);
     string testPath = m_dio->read();
     *m_pathToTest = testPath;
-    toWrite = "Upload complete.\n";
+    toWrite = "Upload complete.\ntrain: " + trainPath + "\ttest: " + testPath + "\n";
     m_dio->write(toWrite);
 }
