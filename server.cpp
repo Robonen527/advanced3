@@ -2,11 +2,13 @@
 
 using namespace std;
 
-int m_client = -1;
-bool m_accepted = false;
+static int m_client = -1;
+static bool m_accepted = false;
+static int amountOfRunning = 0;
 
 void runClient(CLI client) {
     client.start();
+    amountOfRunning--;
 }
 
 void acceptClient(int sock) {
@@ -52,34 +54,26 @@ int main() {
     int x = 5;
     while (x > 0) {
         thread tryAccept(acceptClient, sock);
-        tryAccept.join();
+        tryAccept.detach();
         for (int i = 0; i < 20; i++) {
             sleep(1);
             if (m_accepted) {
                 break;
             }
         }
-        if (!m_accepted) break; 
+        if (!m_accepted) break;
         SocketIO clientIO(m_client);
         CLI cli1(&clientIO);
         thread client_thread(runClient, cli1);
-        client_thread.join();
+        client_thread.detach();
+        amountOfRunning++;
         x--;
     }
     cout << "don't accept clients anymore\n";
 
-    // struct sockaddr_in client_sin;
-    // unsigned int addr_len = sizeof(client_sin);
-    // int client_sock = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
-    // if (client_sock < 0) {
-    //     perror("error accepting client");
-    // }
-    // SocketIO clientIO(client_sock);
-    // CLI cli1(&clientIO);
-    // thread client_thread(runClient, cli1);
-    // client_thread.join();
-
-
+    while (amountOfRunning > 0) {
+        sleep(1);
+    }
     close(sock);
 
     return 0;
