@@ -50,7 +50,9 @@ int main() {
         perror("error listening to a socket");
     }
 
-
+    SocketIO* clientsIO[5];
+    thread* client_threads[5];
+    CLI* clis[5];
     int x = 5;
     while (x > 0) {
         thread tryAccept(acceptClient, sock);
@@ -62,10 +64,9 @@ int main() {
             }
         }
         if (!m_accepted) break;
-        SocketIO clientIO(m_client);
-        CLI cli1(&clientIO);
-        thread client_thread(runClient, cli1);
-        client_thread.detach();
+        clientsIO[5-x] = new SocketIO(m_client);
+        clis[5-x] = new CLI(clientsIO[5-x]);
+        client_threads[5-x] = new thread(runClient, *clis[5-x]);
         amountOfRunning++;
         x--;
     }
