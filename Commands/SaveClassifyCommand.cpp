@@ -23,9 +23,9 @@ void SaveClassifyCommand::execute() {
         toWrite += to_string(i+1); 
         toWrite += " "; 
         toWrite +=  m_classifiedIrises[i].type();
-        toWrite += "\n";
+        toWrite += ",";
     }
-    toWrite += "Done.\n";
+    toWrite += "Done.,";
     thread to_file(typesToFile, toWrite, fileName);
     to_file.join();
 }
