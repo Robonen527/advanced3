@@ -48,10 +48,7 @@ void run(int sock) {
             cout << read(sock);
             break;
         case 4:
-            do {
-                s = read(sock);
-                cout << s;
-            } while (!(s.compare("Done.\n") == 0));
+            cout << read(sock);
             break;
         case 5:
             cout << read(sock);

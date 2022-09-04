@@ -11,16 +11,17 @@ string PrintClassifyCommand::getDescription() {
 }
 
 void PrintClassifyCommand::execute() {
+    string toWrite;
     if (m_classifiedIrises == NULL) {
         m_dio->write("There isn't classifiedIrises\n");
     }
     else {
         for (int i = 0; i < m_lengthOfC; i++) {
-            string toWrite = to_string(i+1) + " " +  m_classifiedIrises[i].type() + "\n";
-            m_dio->write(toWrite);
+            toWrite += to_string(i+1) + " " +  m_classifiedIrises[i].type() + "\n";
         }
     }
-    m_dio->write("Done.\n");
+    toWrite += "Done.\n";
+    m_dio->write(toWrite);
 }
 
 void PrintClassifyCommand::setClassifiedIrises(Iris* irises, int amountOfIrises) {

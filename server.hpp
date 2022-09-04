@@ -26,4 +26,4 @@ void runClient(CLI client);
  * @param client (a refference to put the client).
  * @param accepted (a refference to tell if the client accepted).
  */
-void acceptClient(int sock, int& client, bool& accepted);
+void acceptClient(int sock);
