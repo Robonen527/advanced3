@@ -17,6 +17,7 @@ string ClassifyCommand::getDescription() {
 }
 
 void ClassifyCommand::execute() {
+    delete[] m_afterClassified;
     Iris* unClassified = readFile(*m_punClassifiedFile);
     int amountOfUC = lengthOfFile(*m_punClassifiedFile);
     Iris* classifeid = readFile(*m_pclassified);
@@ -35,6 +36,7 @@ void ClassifyCommand::execute() {
             &Iris::chebyshevDistance));
         }
     }
+    delete[] classifeid;
     m_dio->write("classifying data complete\n");
     m_lengthOfAC = amountOfUC;
     m_afterClassified = unClassified;

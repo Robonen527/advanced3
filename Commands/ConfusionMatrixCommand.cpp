@@ -147,4 +147,5 @@ void ConfusionMatrixCommand::execute() {
     }
     toWrite += "\tIris-setosa\tIris-virginica\tIris-versicolor\n";
     m_dio->write(toWrite);
+    delete[] classifeid;
 }

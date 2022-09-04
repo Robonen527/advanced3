@@ -75,6 +75,11 @@ int main() {
     while (amountOfRunning > 0) {
         sleep(1);
     }
+    for (int k = 0; k < 5 - x; k++) {
+        delete clis[k];
+        delete client_threads[k];
+        delete clientsIO[k];
+    }
     close(sock);
 
     return 0;
