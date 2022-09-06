@@ -12,7 +12,7 @@ string SaveClassifyCommand::getDescription() {
 
 void SaveClassifyCommand::execute() {
     if (m_classifiedIrises == NULL) {
-        m_dio->write("There isn't classifiedIrises\n");
+        m_dio->write("error: There isn't classifiedIrises\n");
         return;
     }
     m_dio->write("Enter a path to the results file:\n");
@@ -21,7 +21,7 @@ void SaveClassifyCommand::execute() {
     string toWrite = "";
     for (int i = 0; i < m_lengthOfC; i++) {
         toWrite += to_string(i+1); 
-        toWrite += " "; 
+        toWrite += "\t"; 
         toWrite +=  m_classifiedIrises[i].type();
         toWrite += ",";
     }

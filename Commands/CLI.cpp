@@ -6,7 +6,7 @@ CLI::CLI(DefaultIO* dio) {
 }
 
 void CLI::start() {
-    string pathTrain, pathTest, funcName = "EUC";
+    string pathTrain = "none", pathTest = "none", funcName = "EUC";
     int k = 5;
     Iris* classifiedIrises = NULL;
     UploadCommand uc(m_dio, &pathTrain, &pathTest);

@@ -1,59 +1,22 @@
 #include "Iris.hpp"
 
-Iris::Iris(double cupLength, double cupWidth
-	, double petalLength, double petalWidth, string type)
-{
-	Iris(cupLength, cupWidth, petalLength, petalWidth);
-	m_type = type;
-}
-
-Iris::Iris(double cupLength, double cupWidth,
-	double petalLength, double petalWidth)
-{
-	m_cupLength = cupLength;
-	m_cupWidth = cupWidth;
-	m_petalLength = petalLength;
-	m_petalWidth = petalWidth;
-}
-
 Iris::Iris()
 {
 	m_type = "unIdentified";
-	m_cupLength = 0.0;
-	m_cupWidth = 0.0;
-	m_petalLength = 0.0;
-	m_petalWidth = 0.0;
-}
-
-void Iris::set(double cupLength, double cupWidth
-	, double petalLength, double petalWidth, string type)
-{
-	m_type = type;
-	m_cupLength = cupLength;
-	m_cupWidth = cupWidth;
-	m_petalLength = petalLength;
-	m_petalWidth = petalWidth;
 }
 
 void Iris::setWithString(string data, char comma)
 {
 	int i, j = 0;
-	i = data.find(comma);
-	m_cupLength = stod(data.substr(j, i - j));
-	j = i + 1;
-	i = data.find(comma, j);
-	m_cupWidth = stod(data.substr(j, i - j));
-	j = i + 1;
-	i = data.find(comma, j);
-	m_petalLength = stod(data.substr(j, i - j));
-	j = i + 1;
-	i = data.find(comma, j);
-	m_petalWidth = stod(data.substr(j, i - j));
-	j = i + 1;
-	if (j == 0)
+	while ((i = data.find(comma, j)) != -1) {
+		characters.push_back(stod(data.substr(j, i - j)));
+		j = i + 1;
+	}
+	if (isdigit(data[j])) {
+		characters.push_back(stod(data.substr(j)));
 		return;
-	i = data.find('\0', j);
-	m_type = data.substr(j, i - j);
+	}
+	m_type = data.substr(j);
 }
 
 Iris* Iris::stringToIrises(string data, int &counter) {
@@ -74,33 +37,6 @@ Iris* Iris::stringToIrises(string data, int &counter) {
 	}
 	irises[counter++].setWithString(data.substr(j), ',');
 	return irises;
-}
-
-string Iris::type() {
-	return m_type;
-}
-
-double Iris::cupLength() {
-	return m_cupLength;
-}
-
-double Iris::cupWidth() {
-	return m_cupWidth;
-}
-
-double Iris::petalLength() {
-	return m_petalLength;
-}
-
-double Iris::petalWidth() {
-	return m_petalWidth;
-}
-
-void Iris::printIris() {
-	cout << "cup length: " << m_cupLength << ", cup width: " << m_cupWidth
-		<< ", petal length: " << m_petalLength << ", petal width: "
-		<< m_petalWidth << ", type: " + m_type << endl;
-	return;
 }
 
 string Iris::classify(Iris* irises, int k, int length, double (Iris::* distanceFunc)(Iris)) {
@@ -170,32 +106,49 @@ string Iris::classify(Iris* irises, int k, int length, double (Iris::* distanceF
 	return "unIdentified";
 }
 
+string Iris::type() {
+	return m_type;
+}
+
 void Iris::setType(string type) {
 	m_type = type;
 }
 
 double Iris::euclideanDistance(Iris checking) {
-	double dx = pow((this->cupLength() - checking.cupLength()), 2);
-	double dy = pow((this->cupWidth() - checking.cupWidth()), 2);
-	double dz = pow((this->petalWidth() - checking.petalWidth()), 2);
-	double dw = pow((this->petalLength() - checking.petalLength()), 2);
-	return sqrt(dx + dy + dz + dw);
+	vector<double> others_chars = checking.characts();
+	double sumOfDistances = 0.0;
+	for (int i = 0; (i < characters.size()) && (i < others_chars.size()); i++) {
+		sumOfDistances += pow(characters[i] - others_chars[i], 2);
+	}
+	// double dx = pow((this->cupLength() - checking.cupLength()), 2);
+	// double dy = pow((this->cupWidth() - checking.cupWidth()), 2);
+	// double dz = pow((this->petalWidth() - checking.petalWidth()), 2);
+	// double dw = pow((this->petalLength() - checking.petalLength()), 2);
+	return sqrt(sumOfDistances);
 }
 
 double Iris::manhattanDistance(Iris checking) {
-	double dx = abs(this->cupLength() - checking.cupLength());
-	double dy = abs(this->cupWidth() - checking.cupWidth());
-	double dz = abs(this->petalWidth() - checking.petalWidth());
-	double dw = abs(this->petalLength() - checking.petalLength());
-	return dx + dy + dz + dw;
+	vector<double> others_chars = checking.characts();
+	double sumOfDistances = 0.0;
+	for (int i = 0; (i < characters.size()) && (i < others_chars.size()); i++) {
+		sumOfDistances += abs(characters[i] - others_chars[i]);
+	}
+	return sumOfDistances;
 }
 
 double Iris::chebyshevDistance(Iris checking) {
-	double dx = abs(this->cupLength() - checking.cupLength());
-	double dy = abs(this->cupWidth() - checking.cupWidth());
-	double dz = abs(this->petalWidth() - checking.petalWidth());
-	double dw = abs(this->petalLength() - checking.petalLength());
-	double maxXY = max(dx, dy);
-	double maxZW = max(dz, dw);
-	return max(maxXY, maxZW);
+	vector<double> others_chars = checking.characts();
+	double maxOfDistances = 0.0;
+	double currentDistance;
+	for (int i = 0; (i < characters.size()) && (i < others_chars.size()); i++) {
+		currentDistance = abs(characters[i] - others_chars[i]);
+		if (currentDistance > maxOfDistances) {
+			maxOfDistances = currentDistance;
+		}
+	}
+	return maxOfDistances;
+}
+
+vector<double> Iris::characts() {
+	return characters;
 }

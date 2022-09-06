@@ -51,8 +51,11 @@ void run(int sock) {
             cout << read(sock);
             break;
         case 5:
-            cout << read(sock);
-            send(sock);
+            s = read(sock);
+            cout << s;
+            if (!(s.substr(0, 5).compare("error") == 0)) {
+                send(sock);
+            }
             break;
         case 6:
             cout << read(sock);

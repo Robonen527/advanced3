@@ -14,6 +14,14 @@ string ConfusionMatrixCommand::getDescription() {
 }
 
 void ConfusionMatrixCommand::execute() {
+    ifstream checkTrainFile;
+    checkTrainFile.open(*m_pclassified);
+    if (!checkTrainFile) {
+        m_dio->write("error: train file doesn't exist\n");
+        checkTrainFile.close();
+        return;
+    }
+    checkTrainFile.close();
     Iris* classifeid = readFile(*m_pclassified);
     int amountOfC = lengthOfFile(*m_pclassified);
     double amountOfRight[3][3];

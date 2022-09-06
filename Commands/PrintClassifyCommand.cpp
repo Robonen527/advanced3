@@ -13,11 +13,12 @@ string PrintClassifyCommand::getDescription() {
 void PrintClassifyCommand::execute() {
     string toWrite;
     if (m_classifiedIrises == NULL) {
-        m_dio->write("There isn't classifiedIrises\n");
+        m_dio->write("error: There isn't classifiedIrises\n");
+        return;
     }
     else {
         for (int i = 0; i < m_lengthOfC; i++) {
-            toWrite += to_string(i+1) + " " +  m_classifiedIrises[i].type() + "\n";
+            toWrite += to_string(i+1) + "\t" +  m_classifiedIrises[i].type() + "\n";
         }
     }
     toWrite += "Done.\n";

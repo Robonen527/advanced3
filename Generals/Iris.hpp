@@ -1,6 +1,7 @@
 #ifndef IRIS
 #define IRIS
 
+#include <vector>
 #include <string>
 #include <iostream>
 #include <cmath>
@@ -10,53 +11,15 @@ using namespace std;
  * This class is responsible for the Iris flower.
  */
 class Iris {
+	vector<double> characters;
 	string m_type;
-	double m_cupLength;
-	double m_cupWidth;
-	double m_petalLength;
-	double m_petalWidth;
 public:
-	/**
- 	* @brief Construct a new Iris object.
- 	* 
- 	* @param cupLength (as it is).
- 	* @param cupWidth (as it is).
- 	* @param petalLength (as it is).
- 	* @param petalWidth (as it is).
- 	* @param type (the type of the iris).
- 	*/
-	Iris(double cupLength, double cupWidth
-		, double petalLength, double petalWidth, string type);
-	
 	/**
 	 * @brief Construct a new Iris object.
 	 * 
 	 */
 	Iris();
 
-	/**
-	 * @brief Construct a new Iris object.
-	 * 
-	 * @param cupLength (as it is).
-	 * @param cupWidth (as it is).
-	 * @param petalLength (as it is).
-	 * @param petalWidth (as it is).
-	 */
-	Iris(double cupLength, double cupWidth,
-		double petalLength, double petalWidth);
-	
-	/**
-	 * @brief set the params of the iris object.
-	 * 
-	 * @param cupLength (as it is).
-	 * @param cupWidth (as it is).
-	 * @param petalLength (as it is).
-	 * @param petalWidth (as it is).
-	 * @param type (as it is).
-	 */
-	void set(double cupLength, double cupWidth
-		, double petalLength, double petalWidth, string type);
-	
 	/**
 	 * @brief Set the params with string of data.
 	 * 
@@ -78,45 +41,6 @@ public:
 	 * @return string (the type of the iris).
 	 */
 	string type();
-
-	/**
-	 * @brief this func returns the length of the cup
-	 * of the iris.
-	 * 
-	 * @return double (the length).
-	 */
-	double cupLength();
-	
-	/**
-	 * @brief this func returns the width of the cup
-	 * of the iris.
-	 * 
-	 * @return double (the width).
-	 */
-	double cupWidth();
-
-	/**
-	 * @brief this func returns the length of the petal
-	 * of the iris.
-	 * 
-	 * @return double (the length).
-	 */
-	double petalLength();
-
-	/**
-	 * @brief this func returns the width of the petal
-	 * of the iris.
-	 * 
-	 * @return double (the width).
-	 */
-	double petalWidth();
-
-	/**
-	 * @brief this func prints the data of the iris.
-	 * 
-	 * @return the string.
-	 */
-	void printIris();
 
 	/**
 	 * @brief this func classify the iris (by KNN).
@@ -155,6 +79,7 @@ public:
 	 * @return double (the chebyshev distance).
 	 */
 	double chebyshevDistance(Iris checking);
+	
 	/**
 	 * @brief The function turns a string of irises to an array of irises.
 	 * 
@@ -163,6 +88,13 @@ public:
 	 * @return Iris* The array of irises returned.
 	 */
 	static Iris* stringToIrises(string data, int &counter);
+
+	/**
+	 * @brief This func returns the vector of the characthers of the Iris.
+	 * 
+	 * @return vector<double> (the vector).
+	 */
+	vector<double> characts();
 };
 
 #endif // IRIS

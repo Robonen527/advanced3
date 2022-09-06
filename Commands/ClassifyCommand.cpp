@@ -18,6 +18,22 @@ string ClassifyCommand::getDescription() {
 
 void ClassifyCommand::execute() {
     delete[] m_afterClassified;
+    ifstream checkTrainFile, checkTestFile;
+    checkTrainFile.open(*m_pclassified);
+    checkTestFile.open(*m_punClassifiedFile);
+    string errorToWrite = "";
+    if (!checkTrainFile) {
+        errorToWrite += "error: train file doesn't exist\n";
+    }
+    checkTrainFile.close();
+    if (!checkTestFile) {
+        errorToWrite += "error: test file doesn't exist\n";
+    }
+    checkTestFile.close();
+    if (!errorToWrite.empty()) {
+        m_dio->write(errorToWrite);
+        return;
+    }
     Iris* unClassified = readFile(*m_punClassifiedFile);
     int amountOfUC = lengthOfFile(*m_punClassifiedFile);
     Iris* classifeid = readFile(*m_pclassified);
